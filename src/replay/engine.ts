@@ -533,11 +533,10 @@ function transform(raw: string | null, kind: string, regex?: { pattern: string; 
 }
 
 async function snap(run: Run, surface: Surface, name: string): Promise<void> {
-  const p = run.screenshotPath(name);
-  await surface.screenshot(p);
   try {
+    await surface.screenshot(run.screenshotPath(name));
     run.writeObservation(name, await surface.observe());
-  } catch {
-    /* ignore */
+  } catch (err) {
+    run.warn('snap.failed', `${name}: ${(err as Error).message}`);
   }
 }

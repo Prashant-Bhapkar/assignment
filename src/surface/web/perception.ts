@@ -215,7 +215,10 @@ export async function perceive(page: Page): Promise<Observation> {
   for (const frame of frames) {
     let data: { interactables: any[]; readables: any[]; visibleText: string };
     try {
-      data = (await frame.evaluate(COLLECT_FN as any)) as any;
+      // COLLECT_FN is a function-literal string; wrap as an IIFE expression so
+      // frame.evaluate() (which evaluates strings as expressions) actually runs it.
+      data = (await frame.evaluate(`(${COLLECT_FN})()`)) as any;
+      if (!data || !Array.isArray(data.interactables)) continue;
     } catch {
       continue;
     }

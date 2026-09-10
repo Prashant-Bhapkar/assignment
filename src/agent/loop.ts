@@ -264,9 +264,13 @@ export async function discover(input: DiscoverInput): Promise<RunTrace> {
 async function snapshot(surface: Surface, run: Run, name: string): Promise<Observation> {
   const shot = run.screenshotPath(name);
   const obs = await surface.observe();
-  await surface.screenshot(shot);
+  await surface.screenshot(shot).catch(() => {});
   obs.screenshotPath = shot;
-  run.writeObservation(name, obs);
+  try {
+    run.writeObservation(name, obs);
+  } catch (err) {
+    run.warn('snapshot.write-failed', `${name}: ${(err as Error).message}`);
+  }
   return obs;
 }
 
