@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+
+# Live run scratch dir — evidence to keep is copied into /evidence by the CLI
+runs/
+.DS_Store
+playwright-report/
+test-results/
