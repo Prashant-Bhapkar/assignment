@@ -1,0 +1,153 @@
+{
+  "url": "http://localhost:4599/dashboard",
+  "title": "Dashboard - Meridian Core",
+  "a11yTree": "- table:\n  - rowgroup:\n    - 'row \"MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n      - cell \"MERIDIAN CORE\"\n      - 'cell \"Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n        - text: \"Servicing Console v4.2.11 | Operator: opr-4821 |\"\n        - link \"Sign out\":\n          - /url: /logout\n- table:\n  - rowgroup:\n    - row \"Dashboard » Member Search\":\n      - cell \"Dashboard » Member Search\":\n        - link \"Dashboard\":\n          - /url: /dashboard\n        - text: »\n        - link \"Member Search\":\n          - /url: /members\n- table:\n  - rowgroup:\n    - row \"Dashboard Quick actions Member Search Notices Nightly batch completed 03:14. No exceptions.\":\n      - cell \"Dashboard Quick actions Member Search Notices Nightly batch completed 03:14. No exceptions.\":\n        - heading \"Dashboard\" [level=2]\n        - table:\n          - rowgroup:\n            - row \"Quick actions Member Search Notices Nightly batch completed 03:14. No exceptions.\":\n              - cell \"Quick actions Member Search\":\n                - text: Quick actions\n                - list:\n                  - listitem:\n                    - link \"Member Search\":\n                      - /url: /members\n              - cell \"Notices Nightly batch completed 03:14. No exceptions.\":\n                - text: Notices\n                - paragraph: Nightly batch completed 03:14. No exceptions.\n- table:\n  - rowgroup:\n    - row \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\":\n      - cell \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\"",
+  "interactables": [
+    {
+      "ref": "e0",
+      "kind": "link",
+      "role": "link",
+      "name": "Sign out",
+      "label": "MERIDIAN CORE",
+      "text": "Sign out",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/logout"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(1) > tbody > tr > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "disabled": false
+    },
+    {
+      "ref": "e1",
+      "kind": "link",
+      "role": "link",
+      "name": "Dashboard",
+      "text": "Dashboard",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/dashboard"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(1)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e2",
+      "kind": "link",
+      "role": "link",
+      "name": "Member Search",
+      "text": "Member Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e3",
+      "kind": "link",
+      "role": "link",
+      "name": "Member Search",
+      "text": "Member Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "tr > td:nth-of-type(1) > ul > li > a"
+      ],
+      "nearbyText": "Quick actions Member Search Notices Nightly batch completed 03:14. No exceptions.",
+      "disabled": false
+    }
+  ],
+  "readables": [
+    {
+      "ref": "r0",
+      "kind": "cell",
+      "role": "cell",
+      "name": "MERIDIAN CORE",
+      "text": "MERIDIAN CORE",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(1) > tbody > tr > td:nth-of-type(1)"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "rowCells": [
+        "MERIDIAN CORE",
+        "Servicing Console v4.2.11  |  Operator: opr-4821  |  Sign ou"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r1",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Notices\n\nNightly batch completed 03:14. No exceptions.",
+      "label": "Quick actions\nMember Search",
+      "text": "Notices\n\nNightly batch completed 03:14. No exceptions.",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr > td:nth-of-type(2)"
+      ],
+      "nearbyText": "Quick actions Member Search Notices Nightly batch completed 03:14. No exceptions.",
+      "rowCells": [
+        "Quick actions\nMember Search",
+        "Notices\n\nNightly batch completed 03:14. No exceptions."
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r2",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "text": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(4) > tbody > tr > td"
+      ],
+      "nearbyText": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "rowCells": [
+        "CONFIDENTIAL — Contains nonpublic personal information. Acce"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    }
+  ],
+  "frames": [
+    {
+      "url": "http://localhost:4599/dashboard"
+    }
+  ],
+  "visibleText": "MERIDIAN CORE\tServicing Console v4.2.11  |  Operator: opr-4821  |  Sign out\nDashboard  »  Member Search\nDashboard\nQuick actions\nMember Search\n\tNotices\nNightly batch completed 03:14. No exceptions.\nCONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+  "httpStatus": 200,
+  "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\001-initial.png"
+}

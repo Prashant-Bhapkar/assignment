@@ -1,0 +1,271 @@
+{
+  "runId": "2026-09-13_06-29-52",
+  "goal": "look up member 12345 and read their current savings balance",
+  "params": {
+    "memberId": "12345"
+  },
+  "target": {
+    "entryUrl": "http://localhost:4599/dashboard",
+    "vendorProduct": "meridian-core"
+  },
+  "model": "claude-sonnet-5",
+  "startedAt": "2026-09-13T06:29:53.246Z",
+  "finishedAt": "2026-09-13T06:30:07.925Z",
+  "outcome": "success",
+  "summary": "Looked up member 12345 (Dana Whitfield, Oakland Main branch) and found the savings account SAV-0012345-01 with a current balance of $3,842.15 (recorded as savings_balance = 384215 cents).",
+  "steps": [
+    {
+      "index": 0,
+      "intent": "Navigate to Member Search to find member 12345",
+      "expectation": "Member search page loads with a search field",
+      "action": {
+        "kind": "click"
+      },
+      "targetDescriptor": {
+        "ref": "e2",
+        "kind": "link",
+        "role": "link",
+        "name": "Member Search",
+        "text": "Member Search",
+        "frame": {
+          "kind": "main"
+        },
+        "attrs": {
+          "href": "/members"
+        },
+        "cssCandidates": [
+          "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)"
+        ],
+        "nearbyText": "Dashboard » Member Search",
+        "disabled": false
+      },
+      "guard": {
+        "verdict": "allow",
+        "risk": "reversible",
+        "reason": "ok"
+      },
+      "resolution": {
+        "strategyKind": "role",
+        "matchCount": 2,
+        "attempts": 1
+      },
+      "result": {
+        "ok": true,
+        "urlBefore": "http://localhost:4599/dashboard",
+        "urlAfter": "http://localhost:4599/members"
+      },
+      "checkpoint": {
+        "pass": false,
+        "detail": "expected \"member search page loads\" not found on page"
+      },
+      "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\004-step-1.png",
+      "observationRef": "step-1"
+    },
+    {
+      "index": 1,
+      "intent": "Enter member ID 12345 to search",
+      "expectation": "Search box contains 12345",
+      "action": {
+        "kind": "type",
+        "valueTemplate": "12345",
+        "secret": false,
+        "pressEnter": false,
+        "clearFirst": true
+      },
+      "targetDescriptor": {
+        "ref": "e3",
+        "kind": "textbox",
+        "role": "textbox",
+        "name": "Member ID or last name",
+        "label": "Member ID or last name",
+        "frame": {
+          "kind": "main"
+        },
+        "attrs": {
+          "name": "q",
+          "type": "text"
+        },
+        "cssCandidates": [
+          "input[name=\"q\"]",
+          "table > tbody > tr > td:nth-of-type(2) > input"
+        ],
+        "nearbyText": "Member ID or last name",
+        "disabled": false
+      },
+      "guard": {
+        "verdict": "allow",
+        "risk": "reversible",
+        "reason": "ok"
+      },
+      "resolution": {
+        "strategyKind": "nearText",
+        "matchCount": 1,
+        "attempts": 2
+      },
+      "result": {
+        "ok": true,
+        "urlBefore": "http://localhost:4599/members",
+        "urlAfter": "http://localhost:4599/members"
+      },
+      "checkpoint": {
+        "pass": false,
+        "detail": "expected \"search box contains 12345\" not found on page"
+      },
+      "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\007-step-2.png",
+      "observationRef": "step-2"
+    },
+    {
+      "index": 2,
+      "intent": "Submit search for member 12345",
+      "expectation": "Member search results show member 12345's details",
+      "action": {
+        "kind": "click"
+      },
+      "targetDescriptor": {
+        "ref": "e4",
+        "kind": "button",
+        "role": "button",
+        "name": "Search",
+        "frame": {
+          "kind": "main"
+        },
+        "attrs": {
+          "type": "submit"
+        },
+        "cssCandidates": [
+          "input[type=\"submit\"][value=\"Search\"]",
+          "table > tbody > tr > td:nth-of-type(3) > input"
+        ],
+        "nearbyText": "Member ID or last name",
+        "disabled": false
+      },
+      "guard": {
+        "verdict": "allow",
+        "risk": "reversible",
+        "reason": "ok"
+      },
+      "resolution": {
+        "strategyKind": "role",
+        "matchCount": 1,
+        "attempts": 1
+      },
+      "result": {
+        "ok": true,
+        "urlBefore": "http://localhost:4599/members",
+        "urlAfter": "http://localhost:4599/members?q=12345"
+      },
+      "checkpoint": {
+        "pass": false,
+        "detail": "expected \"member search results show\" not found on page"
+      },
+      "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\010-step-3.png",
+      "observationRef": "step-3"
+    },
+    {
+      "index": 3,
+      "intent": "Open Dana Whitfield's member profile to view savings balance",
+      "expectation": "Member detail page loads showing account balances including savings",
+      "action": {
+        "kind": "click"
+      },
+      "targetDescriptor": {
+        "ref": "e5",
+        "kind": "link",
+        "role": "link",
+        "name": "Dana Whitfield",
+        "label": "12345",
+        "text": "Dana Whitfield",
+        "frame": {
+          "kind": "main"
+        },
+        "attrs": {
+          "href": "/members/12345"
+        },
+        "cssCandidates": [
+          "table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > a"
+        ],
+        "nearbyText": "12345 Dana Whitfield Oakland Main",
+        "disabled": false
+      },
+      "guard": {
+        "verdict": "allow",
+        "risk": "reversible",
+        "reason": "ok"
+      },
+      "resolution": {
+        "strategyKind": "role",
+        "matchCount": 1,
+        "attempts": 1
+      },
+      "result": {
+        "ok": true,
+        "urlBefore": "http://localhost:4599/members?q=12345",
+        "urlAfter": "http://localhost:4599/members/12345"
+      },
+      "checkpoint": {
+        "pass": false,
+        "detail": "expected \"member detail page loads\" not found on page"
+      },
+      "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\013-step-4.png",
+      "observationRef": "step-4"
+    },
+    {
+      "index": 4,
+      "intent": "Record member 12345's current savings account balance",
+      "action": {
+        "kind": "extract",
+        "into": "savings_balance",
+        "attribute": "text",
+        "transform": "moneyToCents"
+      },
+      "targetDescriptor": {
+        "ref": "r15",
+        "kind": "cell",
+        "role": "cell",
+        "name": "$3,842.15",
+        "label": "Open",
+        "text": "$3,842.15",
+        "frame": {
+          "kind": "urlContains",
+          "value": "summary"
+        },
+        "attrs": {},
+        "cssCandidates": [
+          "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(4)"
+        ],
+        "nearbyText": "SAV-0012345-01 Savings Open $3,842.15",
+        "rowCells": [
+          "SAV-0012345-01",
+          "Savings",
+          "Open",
+          "$3,842.15"
+        ],
+        "colIndex": 3,
+        "disabled": false
+      },
+      "guard": {
+        "verdict": "allow",
+        "risk": "reversible",
+        "reason": "ok"
+      },
+      "result": {
+        "ok": true,
+        "urlBefore": "http://localhost:4599/members/12345",
+        "urlAfter": "http://localhost:4599/members/12345"
+      },
+      "extracted": {
+        "name": "savings_balance",
+        "type": "money",
+        "rawValue": "384215"
+      },
+      "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\016-step-5.png",
+      "observationRef": "step-5"
+    }
+  ],
+  "outputs": {
+    "savings_balance": {
+      "type": "money",
+      "value": "384215"
+    }
+  }
+}

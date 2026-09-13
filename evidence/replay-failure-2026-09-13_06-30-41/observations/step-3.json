@@ -1,0 +1,130 @@
+{
+  "url": "http://localhost:4599/members/12345",
+  "title": "System Error - Meridian Core",
+  "a11yTree": "- table:\n  - rowgroup:\n    - 'row \"MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n      - cell \"MERIDIAN CORE\"\n      - 'cell \"Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n        - text: \"Servicing Console v4.2.11 | Operator: opr-4821 |\"\n        - link \"Sign out\":\n          - /url: /logout\n- table:\n  - rowgroup:\n    - row \"Dashboard » Member Search\":\n      - cell \"Dashboard » Member Search\":\n        - link \"Dashboard\":\n          - /url: /dashboard\n        - text: »\n        - link \"Member Search\":\n          - /url: /members\n- table:\n  - rowgroup:\n    - row \"System Error An unexpected error occurred (ref 0x5F3A). The transaction was not completed. Return to dashboard\":\n      - cell \"System Error An unexpected error occurred (ref 0x5F3A). The transaction was not completed. Return to dashboard\":\n        - heading \"System Error\" [level=2]\n        - paragraph: An unexpected error occurred (ref 0x5F3A). The transaction was not completed.\n        - paragraph:\n          - link \"Return to dashboard\":\n            - /url: /dashboard\n- table:\n  - rowgroup:\n    - row \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\":\n      - cell \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\"",
+  "interactables": [
+    {
+      "ref": "e0",
+      "kind": "link",
+      "role": "link",
+      "name": "Sign out",
+      "label": "MERIDIAN CORE",
+      "text": "Sign out",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/logout"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(1) > tbody > tr > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "disabled": false
+    },
+    {
+      "ref": "e1",
+      "kind": "link",
+      "role": "link",
+      "name": "Dashboard",
+      "text": "Dashboard",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/dashboard"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(1)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e2",
+      "kind": "link",
+      "role": "link",
+      "name": "Member Search",
+      "text": "Member Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e3",
+      "kind": "link",
+      "role": "link",
+      "name": "Return to dashboard",
+      "text": "Return to dashboard",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/dashboard"
+      },
+      "cssCandidates": [
+        "tbody > tr > td > p:nth-of-type(2) > a"
+      ],
+      "nearbyText": "System Error An unexpected error occurred (ref 0x5F3A). The transaction was not completed. Return to dashboard",
+      "disabled": false
+    }
+  ],
+  "readables": [
+    {
+      "ref": "r0",
+      "kind": "cell",
+      "role": "cell",
+      "name": "MERIDIAN CORE",
+      "text": "MERIDIAN CORE",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(1) > tbody > tr > td:nth-of-type(1)"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "rowCells": [
+        "MERIDIAN CORE",
+        "Servicing Console v4.2.11  |  Operator: opr-4821  |  Sign ou"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r1",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "text": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(4) > tbody > tr > td"
+      ],
+      "nearbyText": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "rowCells": [
+        "CONFIDENTIAL — Contains nonpublic personal information. Acce"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    }
+  ],
+  "frames": [
+    {
+      "url": "http://localhost:4599/members/12345"
+    }
+  ],
+  "visibleText": "MERIDIAN CORE\tServicing Console v4.2.11  |  Operator: opr-4821  |  Sign out\nDashboard  »  Member Search\nSystem Error\nAn unexpected error occurred (ref 0x5F3A). The transaction was not completed.\nReturn to dashboard\nCONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+  "httpStatus": 500
+}

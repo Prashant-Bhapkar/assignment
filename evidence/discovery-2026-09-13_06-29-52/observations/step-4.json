@@ -1,0 +1,678 @@
+{
+  "url": "http://localhost:4599/members/12345",
+  "title": "Member 12345 - Meridian Core",
+  "a11yTree": "- table:\n  - rowgroup:\n    - 'row \"MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n      - cell \"MERIDIAN CORE\"\n      - 'cell \"Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n        - text: \"Servicing Console v4.2.11 | Operator: opr-4821 |\"\n        - link \"Sign out\":\n          - /url: /logout\n- table:\n  - rowgroup:\n    - row \"Dashboard » Member Search\":\n      - cell \"Dashboard » Member Search\":\n        - link \"Dashboard\":\n          - /url: /dashboard\n        - text: »\n        - link \"Member Search\":\n          - /url: /members\n- table:\n  - rowgroup:\n    - 'row \"Dana Whitfield Member #12345 · Oakland Main branch · Member since 2013-06-02 SSN ***-**-4417 Phone (415) 555-0148 Email «redacted:email» Account Summary Open Sub-Account Back to search\"':\n      - 'cell \"Dana Whitfield Member #12345 · Oakland Main branch · Member since 2013-06-02 SSN ***-**-4417 Phone (415) 555-0148 Email «redacted:email» Account Summary Open Sub-Account Back to search\"':\n        - heading \"Dana Whitfield\" [level=2]\n        - paragraph: \"Member #12345 · Oakland Main branch · Member since 2013-06-02\"\n        - table:\n          - rowgroup:\n            - row \"SSN ***-**-4417\":\n              - cell \"SSN\"\n              - cell \"***-**-4417\"\n            - row \"Phone (415) 555-0148\":\n              - cell \"Phone\"\n              - cell \"(415) 555-0148\"\n            - row \"Email «redacted:email»\":\n              - cell \"Email\"\n              - cell \"«redacted:email»\"\n        - text: Account Summary\n        - iframe\n        - table:\n          - rowgroup:\n            - row \"Open Sub-Account Back to search\":\n              - cell \"Open Sub-Account\":\n                - link \"Open Sub-Account\":\n                  - /url: /members/12345/sub-account/new\n              - cell \"Back to search\":\n                - link \"Back to search\":\n                  - /url: /members\n- table:\n  - rowgroup:\n    - row \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\":\n      - cell \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\"",
+  "interactables": [
+    {
+      "ref": "e0",
+      "kind": "link",
+      "role": "link",
+      "name": "Sign out",
+      "label": "MERIDIAN CORE",
+      "text": "Sign out",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/logout"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(1) > tbody > tr > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "disabled": false
+    },
+    {
+      "ref": "e1",
+      "kind": "link",
+      "role": "link",
+      "name": "Dashboard",
+      "text": "Dashboard",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/dashboard"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(1)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e2",
+      "kind": "link",
+      "role": "link",
+      "name": "Member Search",
+      "text": "Member Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e3",
+      "kind": "link",
+      "role": "link",
+      "name": "Open Sub-Account",
+      "text": "Open Sub-Account",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members/12345/sub-account/new"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) > a"
+      ],
+      "nearbyText": "Open Sub-Account Back to search",
+      "disabled": false
+    },
+    {
+      "ref": "e4",
+      "kind": "link",
+      "role": "link",
+      "name": "Back to search",
+      "label": "Open Sub-Account",
+      "text": "Back to search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "Open Sub-Account Back to search",
+      "disabled": false
+    }
+  ],
+  "readables": [
+    {
+      "ref": "r0",
+      "kind": "cell",
+      "role": "cell",
+      "name": "MERIDIAN CORE",
+      "text": "MERIDIAN CORE",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(1) > tbody > tr > td:nth-of-type(1)"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "rowCells": [
+        "MERIDIAN CORE",
+        "Servicing Console v4.2.11  |  Operator: opr-4821  |  Sign ou"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r1",
+      "kind": "cell",
+      "role": "cell",
+      "name": "SSN",
+      "text": "SSN",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(1) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "SSN ***-**-4417",
+      "rowCells": [
+        "SSN",
+        "***-**-4417"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r2",
+      "kind": "cell",
+      "role": "cell",
+      "name": "***-**-4417",
+      "label": "SSN",
+      "text": "***-**-4417",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(1) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "SSN ***-**-4417",
+      "rowCells": [
+        "SSN",
+        "***-**-4417"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r3",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Phone",
+      "text": "Phone",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "Phone (415) 555-0148",
+      "rowCells": [
+        "Phone",
+        "(415) 555-0148"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r4",
+      "kind": "cell",
+      "role": "cell",
+      "name": "(415) 555-0148",
+      "label": "Phone",
+      "text": "(415) 555-0148",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "Phone (415) 555-0148",
+      "rowCells": [
+        "Phone",
+        "(415) 555-0148"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r5",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Email",
+      "text": "Email",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "Email «redacted:email»",
+      "rowCells": [
+        "Email",
+        "«redacted:email»"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r6",
+      "kind": "cell",
+      "role": "cell",
+      "name": "«redacted:email»",
+      "label": "Email",
+      "text": "«redacted:email»",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "Email «redacted:email»",
+      "rowCells": [
+        "Email",
+        "«redacted:email»"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r7",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "text": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(4) > tbody > tr > td"
+      ],
+      "nearbyText": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "rowCells": [
+        "CONFIDENTIAL — Contains nonpublic personal information. Acce"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r8",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Account",
+      "text": "Account",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(1) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "Account Type Status Current Balance",
+      "rowCells": [
+        "Account",
+        "Type",
+        "Status",
+        "Current Balance"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r9",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Type",
+      "label": "Account",
+      "text": "Type",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "Account Type Status Current Balance",
+      "rowCells": [
+        "Account",
+        "Type",
+        "Status",
+        "Current Balance"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r10",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Status",
+      "label": "Type",
+      "text": "Status",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "Account Type Status Current Balance",
+      "rowCells": [
+        "Account",
+        "Type",
+        "Status",
+        "Current Balance"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r11",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Current Balance",
+      "label": "Status",
+      "text": "Current Balance",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(1) > td:nth-of-type(4)"
+      ],
+      "nearbyText": "Account Type Status Current Balance",
+      "rowCells": [
+        "Account",
+        "Type",
+        "Status",
+        "Current Balance"
+      ],
+      "colIndex": 3,
+      "disabled": false
+    },
+    {
+      "ref": "r12",
+      "kind": "cell",
+      "role": "cell",
+      "name": "SAV-0012345-01",
+      "text": "SAV-0012345-01",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "SAV-0012345-01 Savings Open $3,842.15",
+      "rowCells": [
+        "SAV-0012345-01",
+        "Savings",
+        "Open",
+        "$3,842.15"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r13",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Savings",
+      "label": "SAV-0012345-01",
+      "text": "Savings",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "SAV-0012345-01 Savings Open $3,842.15",
+      "rowCells": [
+        "SAV-0012345-01",
+        "Savings",
+        "Open",
+        "$3,842.15"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r14",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Open",
+      "label": "Savings",
+      "text": "Open",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "SAV-0012345-01 Savings Open $3,842.15",
+      "rowCells": [
+        "SAV-0012345-01",
+        "Savings",
+        "Open",
+        "$3,842.15"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r15",
+      "kind": "cell",
+      "role": "cell",
+      "name": "$3,842.15",
+      "label": "Open",
+      "text": "$3,842.15",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(4)"
+      ],
+      "nearbyText": "SAV-0012345-01 Savings Open $3,842.15",
+      "rowCells": [
+        "SAV-0012345-01",
+        "Savings",
+        "Open",
+        "$3,842.15"
+      ],
+      "colIndex": 3,
+      "disabled": false
+    },
+    {
+      "ref": "r16",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CHK-0012345-02",
+      "text": "CHK-0012345-02",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(3) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "CHK-0012345-02 Checking Open $1,211.88",
+      "rowCells": [
+        "CHK-0012345-02",
+        "Checking",
+        "Open",
+        "$1,211.88"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r17",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Checking",
+      "label": "CHK-0012345-02",
+      "text": "Checking",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "CHK-0012345-02 Checking Open $1,211.88",
+      "rowCells": [
+        "CHK-0012345-02",
+        "Checking",
+        "Open",
+        "$1,211.88"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r18",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Open",
+      "label": "Checking",
+      "text": "Open",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(3) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "CHK-0012345-02 Checking Open $1,211.88",
+      "rowCells": [
+        "CHK-0012345-02",
+        "Checking",
+        "Open",
+        "$1,211.88"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r19",
+      "kind": "cell",
+      "role": "cell",
+      "name": "$1,211.88",
+      "label": "Open",
+      "text": "$1,211.88",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(3) > td:nth-of-type(4)"
+      ],
+      "nearbyText": "CHK-0012345-02 Checking Open $1,211.88",
+      "rowCells": [
+        "CHK-0012345-02",
+        "Checking",
+        "Open",
+        "$1,211.88"
+      ],
+      "colIndex": 3,
+      "disabled": false
+    },
+    {
+      "ref": "r20",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CD-0012345-03",
+      "text": "CD-0012345-03",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(4) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "CD-0012345-03 Certificate Open $25,000.00",
+      "rowCells": [
+        "CD-0012345-03",
+        "Certificate",
+        "Open",
+        "$25,000.00"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r21",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Certificate",
+      "label": "CD-0012345-03",
+      "text": "Certificate",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "CD-0012345-03 Certificate Open $25,000.00",
+      "rowCells": [
+        "CD-0012345-03",
+        "Certificate",
+        "Open",
+        "$25,000.00"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r22",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Open",
+      "label": "Certificate",
+      "text": "Open",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(4) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "CD-0012345-03 Certificate Open $25,000.00",
+      "rowCells": [
+        "CD-0012345-03",
+        "Certificate",
+        "Open",
+        "$25,000.00"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r23",
+      "kind": "cell",
+      "role": "cell",
+      "name": "$25,000.00",
+      "label": "Open",
+      "text": "$25,000.00",
+      "frame": {
+        "kind": "urlContains",
+        "value": "summary"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table > tbody > tr:nth-of-type(4) > td:nth-of-type(4)"
+      ],
+      "nearbyText": "CD-0012345-03 Certificate Open $25,000.00",
+      "rowCells": [
+        "CD-0012345-03",
+        "Certificate",
+        "Open",
+        "$25,000.00"
+      ],
+      "colIndex": 3,
+      "disabled": false
+    }
+  ],
+  "frames": [
+    {
+      "url": "http://localhost:4599/members/12345"
+    },
+    {
+      "url": "http://localhost:4599/members/12345/summary"
+    }
+  ],
+  "visibleText": "MERIDIAN CORE\tServicing Console v4.2.11  |  Operator: opr-4821  |  Sign out\nDashboard  »  Member Search\nDana Whitfield\nMember #12345  ·  Oakland Main branch  ·  Member since 2013-06-02\nSSN\t***-**-4417\nPhone\t(415) 555-0148\nEmail\t«redacted:email»\nAccount Summary\nOpen Sub-Account\tBack to search\nCONFIDENTIAL — Contains nonpublic personal information. Access is logged.\n\n[frame url~summary]\nAccount\tType\tStatus\tCurrent Balance\nSAV-0012345-01\tSavings\tOpen\t$3,842.15\nCHK-0012345-02\tChecking\tOpen\t$1,211.88\nCD-0012345-03\tCertificate\tOpen\t$25,000.00",
+  "httpStatus": 200,
+  "screenshotPath": "runs\\2026-09-13_06-29-52-discovery\\screenshots\\013-step-4.png"
+}

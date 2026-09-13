@@ -1,0 +1,19 @@
+{
+  "status": "failure",
+  "artifactId": "meridian-core.member.read_savings_balance",
+  "artifactVersion": "1.0.0",
+  "failureKind": "hard",
+  "atStep": 3,
+  "stepIntent": "Open Dana Whitfield's member profile to view savings balance",
+  "expected": "no error condition",
+  "observed": "looking for \"unexpected error occurred\"",
+  "message": "The application reported an internal error; the operation did not complete.",
+  "recovered": [],
+  "evidence": {
+    "runDir": "runs\\2026-09-13_06-30-41-replay",
+    "url": "http://localhost:4599/members/12345",
+    "screenshotPath": "runs\\2026-09-13_06-30-41-replay\\screenshots\\019-failure.png",
+    "domSnapshotPath": "runs\\2026-09-13_06-30-41-replay\\failure-dom.html"
+  },
+  "durationMs": 2430
+}

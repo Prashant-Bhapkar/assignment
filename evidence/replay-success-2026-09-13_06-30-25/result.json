@@ -1,0 +1,49 @@
+{
+  "status": "success",
+  "artifactId": "meridian-core.member.read_savings_balance",
+  "artifactVersion": "1.0.0",
+  "outputs": {
+    "savings_balance": "51002"
+  },
+  "checkpoints": [
+    {
+      "step": -1,
+      "description": "An authenticated operator session exists",
+      "pass": true,
+      "detail": "ensuring absent \"Operator Sign In\""
+    },
+    {
+      "step": 0,
+      "description": "URL is the /members page",
+      "pass": true,
+      "detail": "url=http://localhost:4599/members needle=/members"
+    },
+    {
+      "step": 1,
+      "description": "Search (button) is present (next step's target)",
+      "pass": true,
+      "detail": "visible=true"
+    },
+    {
+      "step": 2,
+      "description": "URL is the /members page",
+      "pass": true,
+      "detail": "url=http://localhost:4599/members?q=23456 needle=/members"
+    },
+    {
+      "step": 3,
+      "description": "URL is the /members/{{memberId}} page",
+      "pass": true,
+      "detail": "url=http://localhost:4599/members/23456 needle=/members/23456"
+    },
+    {
+      "step": 999,
+      "description": "$3,842.15 (cell) is present (the extracted data)",
+      "pass": true,
+      "detail": "visible=true"
+    }
+  ],
+  "recovered": [],
+  "stepsRun": 5,
+  "durationMs": 2489
+}

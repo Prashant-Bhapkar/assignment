@@ -1,0 +1,17 @@
+{
+  "status": "failure",
+  "artifactId": "meridian-core.member.read_savings_balance",
+  "artifactVersion": "1.0.0",
+  "failureKind": "input",
+  "atStep": null,
+  "expected": "parameter \"memberId\" provided",
+  "observed": "missing",
+  "message": "Required parameter \"memberId\" was not supplied.",
+  "recovered": [],
+  "evidence": {
+    "runDir": "runs\\2026-09-13_06-30-46-replay",
+    "url": "(surface not started)",
+    "screenshotPath": "runs\\2026-09-13_06-30-46-replay\\screenshots\\001-failure.png"
+  },
+  "durationMs": 2
+}

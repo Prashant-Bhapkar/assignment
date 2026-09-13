@@ -1,0 +1,304 @@
+{
+  "url": "http://localhost:4599/members?q=23456",
+  "title": "Member Search - Meridian Core",
+  "a11yTree": "- table:\n  - rowgroup:\n    - 'row \"MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n      - cell \"MERIDIAN CORE\"\n      - 'cell \"Servicing Console v4.2.11 | Operator: opr-4821 | Sign out\"':\n        - text: \"Servicing Console v4.2.11 | Operator: opr-4821 |\"\n        - link \"Sign out\":\n          - /url: /logout\n- table:\n  - rowgroup:\n    - row \"Dashboard » Member Search\":\n      - cell \"Dashboard » Member Search\":\n        - link \"Dashboard\":\n          - /url: /dashboard\n        - text: »\n        - link \"Member Search\":\n          - /url: /members\n- table:\n  - rowgroup:\n    - row \"Member Search Member ID or last name 23456 Search ID Name Branch 23456 Marcus Portilla Berkeley\":\n      - cell \"Member Search Member ID or last name 23456 Search ID Name Branch 23456 Marcus Portilla Berkeley\":\n        - heading \"Member Search\" [level=2]\n        - table:\n          - rowgroup:\n            - row \"Member ID or last name 23456 Search\":\n              - cell \"Member ID or last name\"\n              - cell \"23456\":\n                - textbox: \"23456\"\n              - cell \"Search\":\n                - button \"Search\"\n        - table:\n          - rowgroup:\n            - row \"ID Name Branch\":\n              - cell \"ID\"\n              - cell \"Name\"\n              - cell \"Branch\"\n            - row \"23456 Marcus Portilla Berkeley\":\n              - cell \"23456\"\n              - cell \"Marcus Portilla\":\n                - link \"Marcus Portilla\":\n                  - /url: /members/23456\n              - cell \"Berkeley\"\n- table:\n  - rowgroup:\n    - row \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\":\n      - cell \"CONFIDENTIAL — Contains nonpublic personal information. Access is logged.\"",
+  "interactables": [
+    {
+      "ref": "e0",
+      "kind": "link",
+      "role": "link",
+      "name": "Sign out",
+      "label": "MERIDIAN CORE",
+      "text": "Sign out",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/logout"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(1) > tbody > tr > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "disabled": false
+    },
+    {
+      "ref": "e1",
+      "kind": "link",
+      "role": "link",
+      "name": "Dashboard",
+      "text": "Dashboard",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/dashboard"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(1)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e2",
+      "kind": "link",
+      "role": "link",
+      "name": "Member Search",
+      "text": "Member Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members"
+      },
+      "cssCandidates": [
+        "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)"
+      ],
+      "nearbyText": "Dashboard » Member Search",
+      "disabled": false
+    },
+    {
+      "ref": "e3",
+      "kind": "textbox",
+      "role": "textbox",
+      "name": "Member ID or last name",
+      "label": "Member ID or last name",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "name": "q",
+        "type": "text"
+      },
+      "cssCandidates": [
+        "input[name=\"q\"]",
+        "table > tbody > tr > td:nth-of-type(2) > input"
+      ],
+      "nearbyText": "Member ID or last name",
+      "disabled": false
+    },
+    {
+      "ref": "e4",
+      "kind": "button",
+      "role": "button",
+      "name": "Search",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "type": "submit"
+      },
+      "cssCandidates": [
+        "input[type=\"submit\"][value=\"Search\"]",
+        "table > tbody > tr > td:nth-of-type(3) > input"
+      ],
+      "nearbyText": "Member ID or last name",
+      "disabled": false
+    },
+    {
+      "ref": "e5",
+      "kind": "link",
+      "role": "link",
+      "name": "Marcus Portilla",
+      "label": "23456",
+      "text": "Marcus Portilla",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {
+        "href": "/members/23456"
+      },
+      "cssCandidates": [
+        "table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > a"
+      ],
+      "nearbyText": "23456 Marcus Portilla Berkeley",
+      "disabled": false
+    }
+  ],
+  "readables": [
+    {
+      "ref": "r0",
+      "kind": "cell",
+      "role": "cell",
+      "name": "MERIDIAN CORE",
+      "text": "MERIDIAN CORE",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(1) > tbody > tr > td:nth-of-type(1)"
+      ],
+      "nearbyText": "MERIDIAN CORE Servicing Console v4.2.11 | Operator: opr-4821 | Sign out",
+      "rowCells": [
+        "MERIDIAN CORE",
+        "Servicing Console v4.2.11  |  Operator: opr-4821  |  Sign ou"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r1",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Member ID or last name",
+      "text": "Member ID or last name",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "form > table > tbody > tr > td:nth-of-type(1)"
+      ],
+      "nearbyText": "Member ID or last name",
+      "rowCells": [
+        "Member ID or last name",
+        "",
+        ""
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r2",
+      "kind": "cell",
+      "role": "cell",
+      "name": "ID",
+      "text": "ID",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr:nth-of-type(1) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "ID Name Branch",
+      "rowCells": [
+        "ID",
+        "Name",
+        "Branch"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r3",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Name",
+      "label": "ID",
+      "text": "Name",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2)"
+      ],
+      "nearbyText": "ID Name Branch",
+      "rowCells": [
+        "ID",
+        "Name",
+        "Branch"
+      ],
+      "colIndex": 1,
+      "disabled": false
+    },
+    {
+      "ref": "r4",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Branch",
+      "label": "Name",
+      "text": "Branch",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "ID Name Branch",
+      "rowCells": [
+        "ID",
+        "Name",
+        "Branch"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r5",
+      "kind": "cell",
+      "role": "cell",
+      "name": "23456",
+      "text": "23456",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"
+      ],
+      "nearbyText": "23456 Marcus Portilla Berkeley",
+      "rowCells": [
+        "23456",
+        "Marcus Portilla",
+        "Berkeley"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    },
+    {
+      "ref": "r6",
+      "kind": "cell",
+      "role": "cell",
+      "name": "Berkeley",
+      "label": "Marcus Portilla",
+      "text": "Berkeley",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(3)"
+      ],
+      "nearbyText": "23456 Marcus Portilla Berkeley",
+      "rowCells": [
+        "23456",
+        "Marcus Portilla",
+        "Berkeley"
+      ],
+      "colIndex": 2,
+      "disabled": false
+    },
+    {
+      "ref": "r7",
+      "kind": "cell",
+      "role": "cell",
+      "name": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "text": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "frame": {
+        "kind": "main"
+      },
+      "attrs": {},
+      "cssCandidates": [
+        "body > table:nth-of-type(4) > tbody > tr > td"
+      ],
+      "nearbyText": "CONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+      "rowCells": [
+        "CONFIDENTIAL — Contains nonpublic personal information. Acce"
+      ],
+      "colIndex": 0,
+      "disabled": false
+    }
+  ],
+  "frames": [
+    {
+      "url": "http://localhost:4599/members?q=23456"
+    }
+  ],
+  "visibleText": "MERIDIAN CORE\tServicing Console v4.2.11  |  Operator: opr-4821  |  Sign out\nDashboard  »  Member Search\nMember Search\nMember ID or last name\t\t\nID\tName\tBranch\n23456\tMarcus Portilla\tBerkeley\nCONFIDENTIAL — Contains nonpublic personal information. Access is logged.",
+  "httpStatus": 200
+}

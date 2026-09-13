@@ -24,7 +24,7 @@ import {
  * Turn a captured element descriptor into an ordered set of locator strategies,
  * most robust first. This is where "robustness reasoning" is encoded.
  */
-export function descriptorToSelector(d: InteractableDescriptor, description?: string): TargetSelector {
+export function descriptorToSelector(d: InteractableDescriptor, description?: string, paramValues: Record<string, string> = {}): TargetSelector {
   const strategies: LocatorStrategy[] = [];
 
   if (d.attrs.testId) {
@@ -36,6 +36,25 @@ export function descriptorToSelector(d: InteractableDescriptor, description?: st
       confidence: 0.98,
       brittle: false,
     });
+  }
+
+  // A link whose href encodes an input parameter (e.g. "/members/12345" when
+  // memberId="12345") generalizes across every invocation. This beats matching
+  // the link's visible text, which is often the record's own data (a name, an
+  // account number) and is specific to THIS run — the exact trap a naive
+  // "click the search result" locator falls into.
+  if (d.attrs.href) {
+    const templatedHref = templatize(d.attrs.href, paramValues);
+    if (templatedHref !== d.attrs.href) {
+      strategies.push({
+        kind: 'css',
+        value: `a[href="${templatedHref}"]`,
+        elementHint: 'link',
+        rationale: `The link's href encodes the record id directly (was "${d.attrs.href}"); parameterising it generalizes to any input, unlike the link's visible text ("${truncate(d.text ?? d.name ?? '')}"), which is this record's own data and won't repeat on other invocations.`,
+        confidence: 0.88,
+        brittle: false,
+      });
+    }
   }
 
   const roleName = d.name || d.text || d.label;
@@ -183,28 +202,43 @@ function templatize(value: string, params: Record<string, string>): string {
   return out;
 }
 
-function paramTypeGuess(value: string): ParamSpec['type'] {
+function paramTypeGuess(name: string, value: string): ParamSpec['type'] {
+  // Identifiers that happen to be numeric (member IDs, account numbers) must stay
+  // strings — leading zeros and exact-match locators/URLs depend on it. Checked
+  // as substrings (not \b-delimited words) so camelCase names like "memberId"
+  // still match — there's no word boundary between "member" and "Id".
+  const n = name.toLowerCase();
+  if (n.endsWith('id') || n.includes('_id') || n.includes('number') || n.includes('code')) return 'string';
   return /^-?\d+(\.\d+)?$/.test(value) ? 'number' : 'string';
 }
 
-function checkpointFromExpectation(step: TraceStep, urlAfter: string): Check | undefined {
-  if (step.action.kind === 'navigate') {
-    return { description: `URL is the ${pathOf(urlAfter)} page`, assertion: { type: 'urlContains', value: pathOf(urlAfter) } };
+/**
+ * Postcondition synthesis is deliberately NOT a guess at page wording.
+ *
+ * The model's free-text `expectation` ("Member search page loads with a search
+ * input...") is not reliable page copy — grabbing its first few words as a
+ * `textPresent` check produces a checkpoint that can never pass. Instead we use
+ * two signals we can actually verify from the recorded run:
+ *   1. did the step change the URL? -> assert the new path is reached.
+ *   2. otherwise, what does the NEXT step need to be true? -> assert that
+ *      target is visible. This is a real, checkable "did this step make
+ *      progress" signal, not a paraphrase of a sentence.
+ */
+function checkpointFor(current: TraceStep, next: TraceStep | undefined, nextTarget: TargetSelector | undefined, params: Record<string, string>): Check | undefined {
+  if (current.result.urlBefore !== current.result.urlAfter) {
+    // Templatize the recorded path so a checkpoint on "/members/12345" reads as
+    // "/members/{{memberId}}" and generalises to every invocation, not just this one.
+    const path = templatize(pathOf(current.result.urlAfter), params);
+    return { description: `URL is the ${path} page`, assertion: { type: 'urlContains', value: path } };
   }
-  if (step.expectation) {
-    // Prefer a distinctive phrase from the expectation as a text checkpoint.
-    const phrase = step.expectation.replace(/["']/g, '').slice(0, 60);
-    return { description: `Page reflects: "${phrase}"`, assertion: { type: 'textPresent', text: keyPhrase(step.expectation) } };
+  if (nextTarget) {
+    return { description: `${nextTarget.description} is present (next step's target)`, assertion: { type: 'elementVisible', target: nextTarget } };
+  }
+  if (!next && current.action.kind === 'extract' && current.targetDescriptor) {
+    // last step, nothing "next" to check against — re-assert the read succeeded.
+    return undefined;
   }
   return undefined;
-}
-
-function keyPhrase(s: string): string {
-  // crude: take the longest capitalised or quoted run, else first 4 words
-  const q = s.match(/"([^"]+)"/)?.[1];
-  if (q) return q;
-  const words = s.split(/\s+/).slice(0, 4).join(' ');
-  return words;
 }
 
 function pathOf(url: string): string {
@@ -230,6 +264,14 @@ const STANDARD_ERROR_HANDLERS: ErrorHandler[] = [
     when: { kind: 'httpStatus', codes: [404] },
     classify: 'business_outcome',
     outcomeCode: 'MEMBER_NOT_FOUND',
+  },
+  {
+    id: 'record-not-found-search',
+    description: 'A search-based flow found zero matching records.',
+    when: { kind: 'textPresent', text: 'No members matched' },
+    classify: 'business_outcome',
+    outcomeCode: 'MEMBER_NOT_FOUND',
+    message: 'No member matched the supplied search value.',
   },
   {
     id: 'permission-denied',
@@ -312,30 +354,28 @@ export interface SynthesisOptions {
 export function traceToArtifact(trace: RunTrace, opts: SynthesisOptions): CapabilityArtifact {
   const paramValues = trace.params;
   const usedParams = new Set<string>();
-  const steps: Step[] = [];
 
-  for (const ts of trace.steps) {
-    if (!ts.result.ok && !ts.humanIntervention) continue; // don't bake failed attempts into the flow
-    const action: Action = adaptAction(ts.action, paramValues, usedParams);
-    const target =
-      ts.targetDescriptor && ts.action.kind !== 'navigate'
-        ? descriptorToSelector(ts.targetDescriptor, selectorDescription(ts))
-        : undefined;
+  // Pass 1: distill the successful trace steps into (trace step, action, target) tuples.
+  const successful = trace.steps.filter((ts) => ts.result.ok || ts.humanIntervention);
+  const tuples = successful.map((ts) => ({
+    ts,
+    action: adaptAction(ts.action, paramValues, usedParams),
+    target: ts.targetDescriptor && ts.action.kind !== 'navigate' ? descriptorToSelector(ts.targetDescriptor, selectorDescription(ts), paramValues) : undefined,
+  }));
 
-    const step: Step = {
-      index: steps.length,
-      intent: ts.intent,
-      action,
-      target,
-      waitFor: target ? [{ description: `${target.description} is present`, assertion: { type: 'elementVisible', target } }] : [],
-      postCondition: checkpointFromExpectation(ts, ts.result.urlAfter),
-      onError: [],
-      timeoutMs: 15000,
-      optional: false,
-      riskClass: (ts.guard.risk as Step['riskClass']) ?? 'read_only',
-    };
-    steps.push(step);
-  }
+  // Pass 2: wire each step's postCondition from what comes next (see checkpointFor).
+  const steps: Step[] = tuples.map(({ ts, action, target }, i) => ({
+    index: i,
+    intent: ts.intent,
+    action,
+    target,
+    waitFor: target ? [{ description: `${target.description} is present`, assertion: { type: 'elementVisible', target } }] : [],
+    postCondition: checkpointFor(ts, tuples[i + 1]?.ts, tuples[i + 1]?.target, paramValues),
+    onError: [],
+    timeoutMs: 15000,
+    optional: false,
+    riskClass: (ts.guard.risk as Step['riskClass']) ?? 'read_only',
+  }));
 
   const outputs: OutputSpec[] = Object.entries(trace.outputs).map(([name, o], i) => {
     const producing = trace.steps.find((s) => s.extracted?.name === name);
@@ -351,18 +391,22 @@ export function traceToArtifact(trace: RunTrace, opts: SynthesisOptions): Capabi
 
   const parameters: ParamSpec[] = [...usedParams].map((name) => ({
     name,
-    type: paramTypeGuess(paramValues[name] ?? ''),
+    type: paramTypeGuess(name, paramValues[name] ?? ''),
     required: true,
     description: `Input "${name}" supplied by the calling agent per invocation.`,
     example: paramValues[name],
     sensitivity: guessSensitivity(name),
   }));
 
+  const lastTuple = tuples.at(-1);
+  const producingTuple = tuples.find((t) => t.ts.extracted);
   const lastUrl = trace.steps.at(-1)?.result.urlAfter ?? opts.baseUrl;
   const successCondition: Check =
-    outputs.length > 0
-      ? { description: 'Target data was located on the final screen', assertion: { type: 'textPresent', text: firstNonEmpty(trace) } }
-      : { description: `Reached ${pathOf(lastUrl)}`, assertion: { type: 'urlContains', value: pathOf(lastUrl) } };
+    outputs.length > 0 && producingTuple?.target
+      ? { description: `${producingTuple.target.description} is present (the extracted data)`, assertion: { type: 'elementVisible', target: producingTuple.target } }
+      : lastTuple?.target
+        ? { description: `${lastTuple.target.description} is present`, assertion: { type: 'elementVisible', target: lastTuple.target } }
+        : { description: `Reached ${templatize(pathOf(lastUrl), paramValues)}`, assertion: { type: 'urlContains', value: templatize(pathOf(lastUrl), paramValues) } };
 
   const riskLevel = steps.some((s) => s.riskClass === 'irreversible')
     ? 'irreversible'
@@ -455,10 +499,6 @@ function guessSensitivity(name: string): ParamSpec['sensitivity'] {
   return 'none';
 }
 
-function firstNonEmpty(trace: RunTrace): string {
-  for (const s of trace.steps) if (s.extracted?.rawValue) return String(s.extracted.rawValue).slice(0, 40);
-  return trace.steps.at(-1)?.expectation?.slice(0, 40) ?? 'confirmation';
-}
 
 function titleFromGoal(goal: string): string {
   const g = goal.trim().replace(/[.]$/, '');

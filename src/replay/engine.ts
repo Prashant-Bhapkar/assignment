@@ -141,7 +141,8 @@ export async function replay(input: ReplayInput): Promise<ReplayResult> {
         const r = await waitForCheck(surface, w, pctx, step.timeoutMs);
         if (!r.pass) {
           ready = false;
-          const handled = await scanAndHandle(step, 'checkpointTimeout', `waitFor not met: ${w.description} (${r.detail})`);
+          const ctx = `waitFor not met: ${w.description} (${r.detail})`;
+          const handled = (await scanAndHandle(step, 'content', ctx)) ?? (await scanAndHandle(step, 'timeout', ctx));
           if (handled) return handled;
           if (stepRecoveries < maxRecoveries && (await tryRecover(step, `readiness: ${w.description}`))) {
             stepRecoveries++;
@@ -182,7 +183,7 @@ export async function replay(input: ReplayInput): Promise<ReplayResult> {
       await snap(run, surface, `step-${step.index}`);
 
       // 3d. classify anything visible (errors can appear with or without an action error)
-      const scanned = await scanAndHandle(step, undefined, actionErr ?? undefined);
+      const scanned = await scanAndHandle(step, 'content', actionErr ?? undefined);
       if (scanned) {
         if (scanned.status === 'business_outcome' || scanned.status === 'failure') return scanned;
       }
@@ -217,7 +218,8 @@ export async function replay(input: ReplayInput): Promise<ReplayResult> {
         const r = await waitForCheck(surface, step.postCondition, pctx, step.timeoutMs);
         checkpoints.push({ step: step.index, description: step.postCondition.description, pass: r.pass, detail: r.detail });
         if (!r.pass) {
-          const handled = await scanAndHandle(step, 'checkpointTimeout', `postcondition failed: ${step.postCondition.description} (${r.detail})`);
+          const ctx = `postcondition failed: ${step.postCondition.description} (${r.detail})`;
+          const handled = (await scanAndHandle(step, 'content', ctx)) ?? (await scanAndHandle(step, 'timeout', ctx));
           if (handled) return handled;
           if (stepRecoveries < maxRecoveries && (await tryRecover(step, `postcondition: ${step.postCondition.description}`))) {
             stepRecoveries++;
@@ -317,7 +319,7 @@ export async function replay(input: ReplayInput): Promise<ReplayResult> {
     for (let attempt = 0; attempt < 3; attempt++) {
       const r = await surface.navigate(url);
       run.info('navigate', `${label} -> ${url}`, { attempt, ok: r.ok });
-      const terminal = await scanAndHandle(entryStep, undefined, `${label} navigation`);
+      const terminal = await scanAndHandle(entryStep, 'content', `${label} navigation`);
       if (terminal) return terminal;
       const rec = await findRecoverable(entryStep);
       if (!rec) return undefined;
@@ -328,11 +330,22 @@ export async function replay(input: ReplayInput): Promise<ReplayResult> {
     return await fail('hard', null, 'entry point reachable', 'recovery exhausted', `Could not reach a clean entry state for ${label}.`);
   }
 
-  /** Evaluate handlers; return a terminal result if one classifies as business/hard. */
-  async function scanAndHandle(step: Step, onlyKind: ErrorSignal['kind'] | undefined, context?: string): Promise<ReplayResult | undefined> {
-    const handlers = [...step.onError, ...artifact.errorHandlers];
+  /**
+   * Evaluate handlers against the CURRENT page and return a terminal result if
+   * one classifies as business/hard.
+   *
+   * mode "content": every handler whose signal is an observable page fact
+   *   (text/url/httpStatus/elementVisible) — checked after every action AND
+   *   whenever a checkpoint fails to explain, so "no members matched" is caught
+   *   even though it surfaces as a readiness-gate timeout, not an action error.
+   * mode "timeout": only handlers explicitly keyed on `checkpointTimeout` — a
+   *   catch-all for "I don't have a page signal, but this checkpoint never
+   *   coming true IS itself the signal". Only meaningful once a checkpoint has
+   *   actually failed, so it is never part of "content".
+   */
+  async function scanAndHandle(step: Step, mode: 'content' | 'timeout', context?: string): Promise<ReplayResult | undefined> {
+    const handlers = [...step.onError, ...artifact.errorHandlers].filter((h) => (mode === 'timeout' ? h.when.kind === 'checkpointTimeout' : h.when.kind !== 'checkpointTimeout'));
     for (const h of handlers) {
-      if (onlyKind && h.when.kind !== onlyKind) continue;
       const m = await matchSignal(surface, h.when, pctx);
       if (!m.matched) continue;
       run.warn('error.detected', `${h.id} → ${h.classify}`, { signal: h.when.kind, detail: m.detail, context });

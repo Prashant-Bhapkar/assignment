@@ -1,0 +1,14 @@
+{
+  "status": "business_outcome",
+  "artifactId": "meridian-core.member.read_savings_balance",
+  "artifactVersion": "1.0.0",
+  "outcomeCode": "MEMBER_NOT_FOUND",
+  "message": "No member matched the supplied search value.",
+  "atStep": 2,
+  "recovered": [],
+  "evidence": {
+    "runDir": "runs\\2026-09-13_06-30-30-replay",
+    "url": "http://localhost:4599/members?q=00000"
+  },
+  "durationMs": 1725
+}

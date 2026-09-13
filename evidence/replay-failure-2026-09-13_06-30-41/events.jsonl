@@ -1,0 +1,19 @@
+{"t":"2026-09-13T06:30:41.624Z","seq":0,"level":"info","event":"replay.start","msg":"meridian-core.member.read_savings_balance@1.0.0","data":{"params":{"baseUrl":"http://localhost:4599","memberId":"12345"}}}
+{"t":"2026-09-13T06:30:41.871Z","seq":1,"level":"info","event":"navigate","msg":"entry -> http://localhost:4599/dashboard","data":{"attempt":0,"ok":true}}
+{"t":"2026-09-13T06:30:41.986Z","seq":2,"level":"info","event":"step.start","msg":"#0 Navigate to Member Search to find member 12345","data":{"action":"click"}}
+{"t":"2026-09-13T06:30:41.994Z","seq":3,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":0,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:41.997Z","seq":4,"level":"info","event":"locator.resolved","msg":"Member Search (link)","data":{"strategy":"role","matches":2}}
+{"t":"2026-09-13T06:30:42.651Z","seq":5,"level":"info","event":"checkpoint.pass","msg":"URL is the /members page"}
+{"t":"2026-09-13T06:30:42.651Z","seq":6,"level":"info","event":"step.start","msg":"#1 Enter member ID 12345 to search","data":{"action":"type"}}
+{"t":"2026-09-13T06:30:42.659Z","seq":7,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":1,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:42.664Z","seq":8,"level":"info","event":"locator.resolved","msg":"Member ID or last name (textbox)","data":{"strategy":"nearText","matches":1}}
+{"t":"2026-09-13T06:30:42.723Z","seq":9,"level":"info","event":"checkpoint.pass","msg":"Search (button) is present (next step's target)"}
+{"t":"2026-09-13T06:30:42.723Z","seq":10,"level":"info","event":"step.start","msg":"#2 Submit search for member 12345","data":{"action":"click"}}
+{"t":"2026-09-13T06:30:42.726Z","seq":11,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":2,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:42.728Z","seq":12,"level":"info","event":"locator.resolved","msg":"Search (button)","data":{"strategy":"role","matches":1}}
+{"t":"2026-09-13T06:30:43.396Z","seq":13,"level":"info","event":"checkpoint.pass","msg":"URL is the /members page"}
+{"t":"2026-09-13T06:30:43.396Z","seq":14,"level":"info","event":"step.start","msg":"#3 Open Dana Whitfield's member profile to view savings balance","data":{"action":"click"}}
+{"t":"2026-09-13T06:30:43.400Z","seq":15,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":3,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:43.402Z","seq":16,"level":"info","event":"locator.resolved","msg":"Dana Whitfield (link)","data":{"strategy":"css","matches":1}}
+{"t":"2026-09-13T06:30:44.025Z","seq":17,"level":"warn","event":"error.detected","msg":"app-error → hard_failure","data":{"signal":"textPresent","detail":"looking for \"unexpected error occurred\""}}
+{"t":"2026-09-13T06:30:44.025Z","seq":18,"level":"error","event":"replay.failure","msg":"The application reported an internal error; the operation did not complete.","data":{"failureKind":"hard","atStep":3,"expected":"no error condition","observed":"looking for \"unexpected error occurred\""}}

@@ -1,0 +1,15 @@
+{"t":"2026-09-13T06:30:30.953Z","seq":0,"level":"info","event":"replay.start","msg":"meridian-core.member.read_savings_balance@1.0.0","data":{"params":{"baseUrl":"http://localhost:4599","memberId":"00000"}}}
+{"t":"2026-09-13T06:30:31.179Z","seq":1,"level":"info","event":"navigate","msg":"entry -> http://localhost:4599/dashboard","data":{"attempt":0,"ok":true}}
+{"t":"2026-09-13T06:30:31.287Z","seq":2,"level":"info","event":"step.start","msg":"#0 Navigate to Member Search to find member 12345","data":{"action":"click"}}
+{"t":"2026-09-13T06:30:31.294Z","seq":3,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":0,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:31.297Z","seq":4,"level":"info","event":"locator.resolved","msg":"Member Search (link)","data":{"strategy":"role","matches":2}}
+{"t":"2026-09-13T06:30:31.948Z","seq":5,"level":"info","event":"checkpoint.pass","msg":"URL is the /members page"}
+{"t":"2026-09-13T06:30:31.948Z","seq":6,"level":"info","event":"step.start","msg":"#1 Enter member ID 12345 to search","data":{"action":"type"}}
+{"t":"2026-09-13T06:30:31.955Z","seq":7,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":1,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:31.958Z","seq":8,"level":"info","event":"locator.resolved","msg":"Member ID or last name (textbox)","data":{"strategy":"nearText","matches":1}}
+{"t":"2026-09-13T06:30:32.011Z","seq":9,"level":"info","event":"checkpoint.pass","msg":"Search (button) is present (next step's target)"}
+{"t":"2026-09-13T06:30:32.012Z","seq":10,"level":"info","event":"step.start","msg":"#2 Submit search for member 12345","data":{"action":"click"}}
+{"t":"2026-09-13T06:30:32.015Z","seq":11,"level":"info","event":"guard.decision","msg":"within policy","data":{"step":2,"verdict":"allow","risk":"reversible"}}
+{"t":"2026-09-13T06:30:32.017Z","seq":12,"level":"info","event":"locator.resolved","msg":"Search (button)","data":{"strategy":"role","matches":1}}
+{"t":"2026-09-13T06:30:32.677Z","seq":13,"level":"warn","event":"error.detected","msg":"record-not-found-search → business_outcome","data":{"signal":"textPresent","detail":"looking for \"No members matched\""}}
+{"t":"2026-09-13T06:30:32.677Z","seq":14,"level":"info","event":"replay.business_outcome","msg":"MEMBER_NOT_FOUND","data":{"message":"No member matched the supplied search value."}}

@@ -1,0 +1,807 @@
+{
+  "schemaVersion": "1.0",
+  "id": "meridian-core.member.read_savings_balance",
+  "version": "1.0.0",
+  "title": "Look up member 12345 and read their current savings balance",
+  "description": "look up member 12345 and read their current savings balance Discovered against meridian-core.",
+  "labels": [
+    "read-only",
+    "member-servicing"
+  ],
+  "binding": {
+    "surface": "legacy-web",
+    "vendorProduct": "meridian-core",
+    "tenantId": null,
+    "baseCapabilityRef": null,
+    "entryPoint": {
+      "urlTemplate": "{{baseUrl}}/dashboard",
+      "requiresAuthenticatedSession": true
+    }
+  },
+  "parameters": [
+    {
+      "name": "memberId",
+      "type": "string",
+      "required": true,
+      "description": "Input \"memberId\" supplied by the calling agent per invocation.",
+      "example": "12345",
+      "sensitivity": "none"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "savings_balance",
+      "type": "money",
+      "description": "Extracted savings_balance.",
+      "required": true,
+      "sensitivity": "none",
+      "producedByStep": 4
+    }
+  ],
+  "preconditions": [
+    {
+      "description": "An authenticated operator session exists",
+      "assertion": {
+        "type": "textAbsent",
+        "text": "Operator Sign In"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "index": 0,
+      "intent": "Navigate to Member Search to find member 12345",
+      "action": {
+        "kind": "click"
+      },
+      "target": {
+        "description": "Member Search (link)",
+        "frame": {
+          "kind": "main"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Member Search",
+            "exact": false,
+            "elementHint": "link",
+            "rationale": "Accessibility role \"link\" + accessible name \"Member Search\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+            "confidence": 0.9,
+            "brittle": false
+          },
+          {
+            "kind": "text",
+            "name": "Member Search",
+            "elementHint": "link",
+            "rationale": "Visible link text \"Member Search\".",
+            "confidence": 0.75,
+            "brittle": false
+          },
+          {
+            "kind": "css",
+            "value": "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)",
+            "elementHint": "link",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      },
+      "waitFor": [
+        {
+          "description": "Member Search (link) is present",
+          "assertion": {
+            "type": "elementVisible",
+            "target": {
+              "description": "Member Search (link)",
+              "frame": {
+                "kind": "main"
+              },
+              "strategies": [
+                {
+                  "kind": "role",
+                  "role": "link",
+                  "name": "Member Search",
+                  "exact": false,
+                  "elementHint": "link",
+                  "rationale": "Accessibility role \"link\" + accessible name \"Member Search\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+                  "confidence": 0.9,
+                  "brittle": false
+                },
+                {
+                  "kind": "text",
+                  "name": "Member Search",
+                  "elementHint": "link",
+                  "rationale": "Visible link text \"Member Search\".",
+                  "confidence": 0.75,
+                  "brittle": false
+                },
+                {
+                  "kind": "css",
+                  "value": "table:nth-of-type(2) > tbody > tr > td > a:nth-of-type(2)",
+                  "elementHint": "link",
+                  "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                  "confidence": 0.25,
+                  "brittle": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "postCondition": {
+        "description": "URL is the /members page",
+        "assertion": {
+          "type": "urlContains",
+          "value": "/members"
+        }
+      },
+      "onError": [],
+      "timeoutMs": 15000,
+      "optional": false,
+      "riskClass": "reversible"
+    },
+    {
+      "index": 1,
+      "intent": "Enter member ID 12345 to search",
+      "action": {
+        "kind": "type",
+        "valueTemplate": "{{memberId}}",
+        "secret": false,
+        "pressEnter": false,
+        "clearFirst": true
+      },
+      "target": {
+        "description": "Member ID or last name (textbox)",
+        "frame": {
+          "kind": "main"
+        },
+        "strategies": [
+          {
+            "kind": "label",
+            "name": "Member ID or last name",
+            "elementHint": "input",
+            "rationale": "Form control associated with visible label \"Member ID or last name\". Stable as long as the field's business meaning is unchanged.",
+            "confidence": 0.82,
+            "brittle": false
+          },
+          {
+            "kind": "nearText",
+            "name": "Member ID or last name",
+            "elementHint": "input",
+            "rationale": "Positional fallback: the first input following the label text. Covers legacy markup where the label is not programmatically associated.",
+            "confidence": 0.55,
+            "brittle": true
+          },
+          {
+            "kind": "css",
+            "value": "input[name=\"q\"]",
+            "elementHint": "input",
+            "rationale": "Attribute selector on name — reasonably stable if the attribute is not auto-generated.",
+            "confidence": 0.7,
+            "brittle": false
+          },
+          {
+            "kind": "css",
+            "value": "table > tbody > tr > td:nth-of-type(2) > input",
+            "elementHint": "input",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      },
+      "waitFor": [
+        {
+          "description": "Member ID or last name (textbox) is present",
+          "assertion": {
+            "type": "elementVisible",
+            "target": {
+              "description": "Member ID or last name (textbox)",
+              "frame": {
+                "kind": "main"
+              },
+              "strategies": [
+                {
+                  "kind": "label",
+                  "name": "Member ID or last name",
+                  "elementHint": "input",
+                  "rationale": "Form control associated with visible label \"Member ID or last name\". Stable as long as the field's business meaning is unchanged.",
+                  "confidence": 0.82,
+                  "brittle": false
+                },
+                {
+                  "kind": "nearText",
+                  "name": "Member ID or last name",
+                  "elementHint": "input",
+                  "rationale": "Positional fallback: the first input following the label text. Covers legacy markup where the label is not programmatically associated.",
+                  "confidence": 0.55,
+                  "brittle": true
+                },
+                {
+                  "kind": "css",
+                  "value": "input[name=\"q\"]",
+                  "elementHint": "input",
+                  "rationale": "Attribute selector on name — reasonably stable if the attribute is not auto-generated.",
+                  "confidence": 0.7,
+                  "brittle": false
+                },
+                {
+                  "kind": "css",
+                  "value": "table > tbody > tr > td:nth-of-type(2) > input",
+                  "elementHint": "input",
+                  "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                  "confidence": 0.25,
+                  "brittle": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "postCondition": {
+        "description": "Search (button) is present (next step's target)",
+        "assertion": {
+          "type": "elementVisible",
+          "target": {
+            "description": "Search (button)",
+            "frame": {
+              "kind": "main"
+            },
+            "strategies": [
+              {
+                "kind": "role",
+                "role": "button",
+                "name": "Search",
+                "exact": false,
+                "elementHint": "button",
+                "rationale": "Accessibility role \"button\" + accessible name \"Search\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+                "confidence": 0.9,
+                "brittle": false
+              },
+              {
+                "kind": "css",
+                "value": "input[type=\"submit\"][value=\"Search\"]",
+                "elementHint": "button",
+                "rationale": "Attribute selector on name — reasonably stable if the attribute is not auto-generated.",
+                "confidence": 0.7,
+                "brittle": false
+              },
+              {
+                "kind": "css",
+                "value": "table > tbody > tr > td:nth-of-type(3) > input",
+                "elementHint": "button",
+                "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                "confidence": 0.25,
+                "brittle": true
+              }
+            ]
+          }
+        }
+      },
+      "onError": [],
+      "timeoutMs": 15000,
+      "optional": false,
+      "riskClass": "reversible"
+    },
+    {
+      "index": 2,
+      "intent": "Submit search for member 12345",
+      "action": {
+        "kind": "click"
+      },
+      "target": {
+        "description": "Search (button)",
+        "frame": {
+          "kind": "main"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Search",
+            "exact": false,
+            "elementHint": "button",
+            "rationale": "Accessibility role \"button\" + accessible name \"Search\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+            "confidence": 0.9,
+            "brittle": false
+          },
+          {
+            "kind": "css",
+            "value": "input[type=\"submit\"][value=\"Search\"]",
+            "elementHint": "button",
+            "rationale": "Attribute selector on name — reasonably stable if the attribute is not auto-generated.",
+            "confidence": 0.7,
+            "brittle": false
+          },
+          {
+            "kind": "css",
+            "value": "table > tbody > tr > td:nth-of-type(3) > input",
+            "elementHint": "button",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      },
+      "waitFor": [
+        {
+          "description": "Search (button) is present",
+          "assertion": {
+            "type": "elementVisible",
+            "target": {
+              "description": "Search (button)",
+              "frame": {
+                "kind": "main"
+              },
+              "strategies": [
+                {
+                  "kind": "role",
+                  "role": "button",
+                  "name": "Search",
+                  "exact": false,
+                  "elementHint": "button",
+                  "rationale": "Accessibility role \"button\" + accessible name \"Search\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+                  "confidence": 0.9,
+                  "brittle": false
+                },
+                {
+                  "kind": "css",
+                  "value": "input[type=\"submit\"][value=\"Search\"]",
+                  "elementHint": "button",
+                  "rationale": "Attribute selector on name — reasonably stable if the attribute is not auto-generated.",
+                  "confidence": 0.7,
+                  "brittle": false
+                },
+                {
+                  "kind": "css",
+                  "value": "table > tbody > tr > td:nth-of-type(3) > input",
+                  "elementHint": "button",
+                  "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                  "confidence": 0.25,
+                  "brittle": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "postCondition": {
+        "description": "URL is the /members page",
+        "assertion": {
+          "type": "urlContains",
+          "value": "/members"
+        }
+      },
+      "onError": [],
+      "timeoutMs": 15000,
+      "optional": false,
+      "riskClass": "reversible"
+    },
+    {
+      "index": 3,
+      "intent": "Open Dana Whitfield's member profile to view savings balance",
+      "action": {
+        "kind": "click"
+      },
+      "target": {
+        "description": "Dana Whitfield (link)",
+        "frame": {
+          "kind": "main"
+        },
+        "strategies": [
+          {
+            "kind": "css",
+            "value": "a[href=\"/members/{{memberId}}\"]",
+            "elementHint": "link",
+            "rationale": "The link's href encodes the record id directly (was \"/members/12345\"); parameterising it generalizes to any input, unlike the link's visible text (\"Dana Whitfield\"), which is this record's own data and won't repeat on other invocations.",
+            "confidence": 0.88,
+            "brittle": false
+          },
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Dana Whitfield",
+            "exact": false,
+            "elementHint": "link",
+            "rationale": "Accessibility role \"link\" + accessible name \"Dana Whitfield\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+            "confidence": 0.9,
+            "brittle": false
+          },
+          {
+            "kind": "text",
+            "name": "Dana Whitfield",
+            "elementHint": "link",
+            "rationale": "Visible link text \"Dana Whitfield\".",
+            "confidence": 0.75,
+            "brittle": false
+          },
+          {
+            "kind": "css",
+            "value": "table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > a",
+            "elementHint": "link",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      },
+      "waitFor": [
+        {
+          "description": "Dana Whitfield (link) is present",
+          "assertion": {
+            "type": "elementVisible",
+            "target": {
+              "description": "Dana Whitfield (link)",
+              "frame": {
+                "kind": "main"
+              },
+              "strategies": [
+                {
+                  "kind": "css",
+                  "value": "a[href=\"/members/{{memberId}}\"]",
+                  "elementHint": "link",
+                  "rationale": "The link's href encodes the record id directly (was \"/members/12345\"); parameterising it generalizes to any input, unlike the link's visible text (\"Dana Whitfield\"), which is this record's own data and won't repeat on other invocations.",
+                  "confidence": 0.88,
+                  "brittle": false
+                },
+                {
+                  "kind": "role",
+                  "role": "link",
+                  "name": "Dana Whitfield",
+                  "exact": false,
+                  "elementHint": "link",
+                  "rationale": "Accessibility role \"link\" + accessible name \"Dana Whitfield\". Portable across DOM refactors and has a desktop (UIA) analogue.",
+                  "confidence": 0.9,
+                  "brittle": false
+                },
+                {
+                  "kind": "text",
+                  "name": "Dana Whitfield",
+                  "elementHint": "link",
+                  "rationale": "Visible link text \"Dana Whitfield\".",
+                  "confidence": 0.75,
+                  "brittle": false
+                },
+                {
+                  "kind": "css",
+                  "value": "table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > a",
+                  "elementHint": "link",
+                  "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                  "confidence": 0.25,
+                  "brittle": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "postCondition": {
+        "description": "URL is the /members/{{memberId}} page",
+        "assertion": {
+          "type": "urlContains",
+          "value": "/members/{{memberId}}"
+        }
+      },
+      "onError": [],
+      "timeoutMs": 15000,
+      "optional": false,
+      "riskClass": "reversible"
+    },
+    {
+      "index": 4,
+      "intent": "Record member 12345's current savings account balance",
+      "action": {
+        "kind": "extract",
+        "into": "savings_balance",
+        "attribute": "text",
+        "transform": "moneyToCents"
+      },
+      "target": {
+        "description": "$3,842.15 (cell)",
+        "frame": {
+          "kind": "urlContains",
+          "value": "summary"
+        },
+        "strategies": [
+          {
+            "kind": "css",
+            "value": "tr:has-text(\"Savings\") td:nth-of-type(4)",
+            "elementHint": "cell",
+            "rationale": "Row identified by the stable label \"Savings\" in it, then the 4th cell. Survives row reordering and value changes; breaks only if a column is inserted.",
+            "confidence": 0.62,
+            "brittle": false
+          },
+          {
+            "kind": "nearText",
+            "name": "Open",
+            "elementHint": "cell",
+            "rationale": "Value cell adjacent to the label \"Open\".",
+            "confidence": 0.5,
+            "brittle": true
+          },
+          {
+            "kind": "css",
+            "value": "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(4)",
+            "elementHint": "any",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      },
+      "waitFor": [
+        {
+          "description": "$3,842.15 (cell) is present",
+          "assertion": {
+            "type": "elementVisible",
+            "target": {
+              "description": "$3,842.15 (cell)",
+              "frame": {
+                "kind": "urlContains",
+                "value": "summary"
+              },
+              "strategies": [
+                {
+                  "kind": "css",
+                  "value": "tr:has-text(\"Savings\") td:nth-of-type(4)",
+                  "elementHint": "cell",
+                  "rationale": "Row identified by the stable label \"Savings\" in it, then the 4th cell. Survives row reordering and value changes; breaks only if a column is inserted.",
+                  "confidence": 0.62,
+                  "brittle": false
+                },
+                {
+                  "kind": "nearText",
+                  "name": "Open",
+                  "elementHint": "cell",
+                  "rationale": "Value cell adjacent to the label \"Open\".",
+                  "confidence": 0.5,
+                  "brittle": true
+                },
+                {
+                  "kind": "css",
+                  "value": "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(4)",
+                  "elementHint": "any",
+                  "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+                  "confidence": 0.25,
+                  "brittle": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "onError": [],
+      "timeoutMs": 15000,
+      "optional": false,
+      "riskClass": "reversible"
+    }
+  ],
+  "successCondition": {
+    "description": "$3,842.15 (cell) is present (the extracted data)",
+    "assertion": {
+      "type": "elementVisible",
+      "target": {
+        "description": "$3,842.15 (cell)",
+        "frame": {
+          "kind": "urlContains",
+          "value": "summary"
+        },
+        "strategies": [
+          {
+            "kind": "css",
+            "value": "tr:has-text(\"Savings\") td:nth-of-type(4)",
+            "elementHint": "cell",
+            "rationale": "Row identified by the stable label \"Savings\" in it, then the 4th cell. Survives row reordering and value changes; breaks only if a column is inserted.",
+            "confidence": 0.62,
+            "brittle": false
+          },
+          {
+            "kind": "nearText",
+            "name": "Open",
+            "elementHint": "cell",
+            "rationale": "Value cell adjacent to the label \"Open\".",
+            "confidence": 0.5,
+            "brittle": true
+          },
+          {
+            "kind": "css",
+            "value": "body > table > tbody > tr:nth-of-type(2) > td:nth-of-type(4)",
+            "elementHint": "any",
+            "rationale": "Structural CSS path — last-resort fallback; will break if the surrounding markup is reorganised.",
+            "confidence": 0.25,
+            "brittle": true
+          }
+        ]
+      }
+    }
+  },
+  "errorHandlers": [
+    {
+      "id": "record-not-found",
+      "description": "The target record does not exist.",
+      "when": {
+        "kind": "textPresent",
+        "text": "No member exists"
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "MEMBER_NOT_FOUND",
+      "message": "No member exists with the supplied ID."
+    },
+    {
+      "id": "record-not-found-status",
+      "description": "Record lookup returned 404.",
+      "when": {
+        "kind": "httpStatus",
+        "codes": [
+          404
+        ]
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "MEMBER_NOT_FOUND"
+    },
+    {
+      "id": "record-not-found-search",
+      "description": "A search-based flow found zero matching records.",
+      "when": {
+        "kind": "textPresent",
+        "text": "No members matched"
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "MEMBER_NOT_FOUND",
+      "message": "No member matched the supplied search value."
+    },
+    {
+      "id": "permission-denied",
+      "description": "Operator lacks authorization for this record.",
+      "when": {
+        "kind": "textPresent",
+        "text": "do not have authorization"
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "PERMISSION_DENIED",
+      "message": "The operator is not authorized to view this record."
+    },
+    {
+      "id": "permission-denied-status",
+      "description": "Access returned 403.",
+      "when": {
+        "kind": "httpStatus",
+        "codes": [
+          403
+        ]
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "PERMISSION_DENIED"
+    },
+    {
+      "id": "session-timeout",
+      "description": "Session expired mid-run.",
+      "when": {
+        "kind": "textPresent",
+        "text": "session has"
+      },
+      "classify": "recoverable",
+      "recovery": {
+        "kind": "reAuthenticate"
+      },
+      "message": "Session expired; re-authentication required."
+    },
+    {
+      "id": "session-timeout-status",
+      "description": "Server signalled session end (440).",
+      "when": {
+        "kind": "httpStatus",
+        "codes": [
+          440
+        ]
+      },
+      "classify": "recoverable",
+      "recovery": {
+        "kind": "reAuthenticate"
+      }
+    },
+    {
+      "id": "maintenance-interstitial",
+      "description": "Unexpected acknowledge-to-continue notice.",
+      "when": {
+        "kind": "textPresent",
+        "text": "Maintenance Notice"
+      },
+      "classify": "recoverable",
+      "recovery": {
+        "kind": "click",
+        "target": {
+          "description": "the \"Acknowledge and Continue\" button on the maintenance notice",
+          "frame": {
+            "kind": "main"
+          },
+          "strategies": [
+            {
+              "kind": "role",
+              "role": "button",
+              "name": "Acknowledge and Continue",
+              "rationale": "Interstitial confirm button by accessible name.",
+              "confidence": 0.9,
+              "brittle": false
+            },
+            {
+              "kind": "text",
+              "name": "Acknowledge",
+              "rationale": "Fallback on partial visible text.",
+              "confidence": 0.6,
+              "brittle": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "app-error",
+      "description": "Server returned an unexpected application error.",
+      "when": {
+        "kind": "textPresent",
+        "text": "unexpected error occurred"
+      },
+      "classify": "hard_failure",
+      "message": "The application reported an internal error; the operation did not complete."
+    },
+    {
+      "id": "app-error-status",
+      "description": "5xx from the application.",
+      "when": {
+        "kind": "httpStatus",
+        "codes": [
+          500,
+          502,
+          503
+        ]
+      },
+      "classify": "hard_failure"
+    },
+    {
+      "id": "validation-error",
+      "description": "Form validation rejected the input.",
+      "when": {
+        "kind": "textPresent",
+        "text": "cannot be negative"
+      },
+      "classify": "business_outcome",
+      "outcomeCode": "VALIDATION_REJECTED",
+      "message": "The application rejected the supplied field values."
+    }
+  ],
+  "policy": {
+    "allowedActionKinds": [
+      "click",
+      "type",
+      "extract"
+    ],
+    "allowedUrlPatterns": [
+      "^http://localhost:4599"
+    ],
+    "riskLevel": "reversible",
+    "requiresApprovalToRun": false,
+    "confirmationRequiredForSteps": []
+  },
+  "provenance": {
+    "createdAt": "2026-09-13T06:30:07.969Z",
+    "createdBy": "discovery-agent",
+    "model": "claude-sonnet-5",
+    "discoveryRunId": "2026-09-13_06-29-52",
+    "sourceGoal": "look up member 12345 and read their current savings balance",
+    "redactions": [],
+    "notes": "Looked up member 12345 (Dana Whitfield, Oakland Main branch) and found the savings account SAV-0012345-01 with a current balance of $3,842.15 (recorded as savings_balance = 384215 cents)."
+  },
+  "approval": {
+    "state": "draft",
+    "approvedBy": null,
+    "approvedAt": null
+  },
+  "stability": {
+    "replays": 6,
+    "successes": 3,
+    "lastVerifiedAt": "2026-09-13T06:30:46.912Z"
+  }
+}
