@@ -795,13 +795,13 @@
     "notes": "Looked up member 12345 (Dana Whitfield, Oakland Main branch) and found the savings account SAV-0012345-01 with a current balance of $3,842.15 (recorded as savings_balance = 384215 cents)."
   },
   "approval": {
-    "state": "draft",
-    "approvedBy": null,
-    "approvedAt": null
+    "state": "approved",
+    "approvedBy": "demo-reviewer",
+    "approvedAt": "2026-09-13T06:33:07.114Z"
   },
   "stability": {
-    "replays": 6,
-    "successes": 3,
-    "lastVerifiedAt": "2026-09-13T06:30:46.912Z"
+    "replays": 7,
+    "successes": 4,
+    "lastVerifiedAt": "2026-09-13T06:33:18.736Z"
   }
 }

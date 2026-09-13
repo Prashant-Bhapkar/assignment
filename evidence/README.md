@@ -28,6 +28,11 @@ iframe → finished. `artifact.json` is the emitted capability, also saved to
 | `replay-failure-2026-09-13_06-30-41/` | `memberId=12345`, `--inject app_error` | `status: "failure"`, `failureKind: "hard"` — the mock app's injected 500 stops the run with a screenshot + DOM snapshot for debugging |
 | `replay-failure-2026-09-13_06-30-46/` | `memberId=` (missing) | `status: "failure"`, `failureKind: "input"` — rejected before the browser even opens |
 
+After the runs above, the committed artifact was moved `draft -> approved`
+(`npm run cli -- catalog approve ...`) and its `stability` counters
+(`replays: 7, successes: 4`) reflect exactly the demo runs on this page — a
+live demonstration of the confidence/approval stretch goal (§8), not seed data.
+
 Reproduce any of these:
 
 ```bash
